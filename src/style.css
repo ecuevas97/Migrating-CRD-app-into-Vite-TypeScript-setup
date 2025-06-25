@@ -1,0 +1,92 @@
+/* styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background: #ffe6f0; /* light pink */  
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+}
+
+/* card- style container */
+.container {
+  background: #ffc0cb; /* classic pink */  
+  padding: 20px;
+  margin-top: 50px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 300px;
+}
+
+/*title*/
+h1 {
+  text-align: center;
+  color: #b30059; /* deep pink */}
+
+/* Form layout */
+form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ffb6c1;
+  border-radius: 6px;
+  background-color: #fff0f5; /* very light pink */
+  color: #4d0039;
+}
+
+button {
+  padding: 10px 12px;
+  margin-left: 8px;
+  background-color: #e75480; /* medium pink */
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #cc3366;
+}
+
+/* List styles */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  background: #fff0f5; /* blush pink */
+  border: 1px solid #ffc0cb;
+  border-radius: 6px;
+  color: #4d0039;
+}
+
+
+/* Delete button */
+.delete-btn {
+  background-color: #ff4d88; /* darker pink */
+  padding: 4px 8px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #cc3366;
+}

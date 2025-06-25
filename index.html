@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+  </head>
+  <body>
+      <div class="container">
+    <h1>My CRD App</h1>
+ 
+ <!-- Form to create a new item -->
+ <form id="item-form">
+  <!-- Input for the item name -->
+  <input type="text" id="name" placeholder="Enter item name" required />
+  <button type="submit">Add Item</button>
+ </form>
+
+<!-- List of items will appear here -->
+  <ul id="item-list"></ul>
+  </div>
+
+  <!-- Link to your JavaScript file -->
+  <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
