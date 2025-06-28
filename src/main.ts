@@ -1,68 +1,75 @@
+import { API_URL } from './constants'
 import './style.css'
 
 
-// set API endpoint
-const API_URL = 'http://localhost:3000/items';
+// STEP 1: Define your item type
+type Item = {
+  id: number
+  name: string
+}
 
-// Get DOM elements
-const itemForm = document.getElementById('item-form');
-const itemList = document.getElementById('item-list');
-const nameInput = document.getElementById('name');
+// STEP 2: API endpoint
 
-// STEP: Get/Read from API 
-async function fetchItems() {
+// STEP 3: Get and type DOM elements
+const itemForm = document.getElementById('item-form') as HTMLFormElement
+const itemList = document.getElementById('item-list') as HTMLUListElement
+const nameInput = document.getElementById('name') as HTMLInputElement
+
+// STEP 4: Fetch items from the server
+async function fetchItems(): Promise<void> {
   try {
-    const res = await fetch(API_URL); // Use fetch to GET from API
-    const items = await res.json();   // Convert response to JSON
-    renderItems(items);               // Pass data to render function
+    const res = await fetch(API_URL)
+    const items: Item[] = await res.json()
+    renderItems(items)
   } catch (err) {
-    console.error('Error fetching items:', err);
+    console.error('Error fetching items:', err)
   }
 }
 
+// STEP 5: Render items in the DOM
+function renderItems(items: Item[]): void {
+  itemList.innerHTML = '' // Clear existing list
 
-// Display items on the page
-function renderItems(items) {
-  itemList.innerHTML = ''; // Clear the list first
-  console.log('Rendering items:', items); 
- 
   items.forEach(item => {
-    const li = document.createElement('li');  // Create <li>
-    li.textContent = item.name; // Set item text
- 
-// Create a Delete Button (Delete)
-    const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = 'Delete';
-    deleteBtn.classList.add('delete-btn');
-    deleteBtn.onclick = () => deleteItem(item.id); // On click, call delete
+    const li = document.createElement('li')
+    li.textContent = item.name
 
-    li.appendChild(deleteBtn);  // Add button to <li>
-    itemList.appendChild(li);   // Add <li> to the list
-  });
+    const deleteBtn = document.createElement('button')
+    deleteBtn.textContent = 'Delete'
+    deleteBtn.classList.add('delete-btn')
+    deleteBtn.onclick = () => deleteItem(item.id)
+
+    li.appendChild(deleteBtn)
+    itemList.appendChild(li)
+  })
 }
 
-// Create item using form (Create)
-itemForm.addEventListener('submit', async (e) => {
-  e.preventDefault(); // Prevent page reload
-  const name = nameInput.value.trim(); // Get input value
+// STEP 6: Handle form submission (create item)
+itemForm.addEventListener('submit', async (e: Event) => {
+  e.preventDefault()
 
-  if (!name) return; // Don't submit empty values
+  const name = nameInput.value.trim()
+  if (!name) return
+
   try {
     const res = await fetch(API_URL, {
-      method: 'POST', // POST to API
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name }) // Send name in request body
-    });
-       if (res.ok) {
-      nameInput.value = ''; // Clear input
-      fetchItems();         // Refresh list
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name })
+    })
+
+    if (res.ok) {
+      nameInput.value = ''
+      fetchItems() // Refresh list
     }
   } catch (err) {
-    console.error('Error adding item:', err);
+    console.error('Error adding item:', err)
   }
-});  
+})
+
+
+// STEP 8: Initial load
+fetchItems()
 
 
 // Delete item from API (Delete)
